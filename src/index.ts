@@ -14,8 +14,8 @@ const gotToAndDo = async (url: string,search:string,rizeTop:boolean,searchLocati
   await page.goto(url);
   await login(page, email, password);
   await page.goto(url2);
-
   await jobSearch(page, search, searchLocation);
+  
   if(rizeTop){ 
   await risetoTop(page);
   }

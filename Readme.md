@@ -1,39 +1,33 @@
 # Automated Job Search
 
-This is a desktop notes app build with electron that not use a database to store data, instead use a JSON file that store the notes rewriting the file in every new entry.
+This is a tool to automate your job search take the data of the user to apply in the most popular websites like LinkedIn, AngelList and remotive.io.
 
-![screenshot](./screen.png)
 
 Additional description about the project and its features.
 
 ## Built With
 
-- Electron.js
+- TypeScript
 - Node
-- Css
+- Puppeteer.js
 
 
 ### Prerequisites
 
 - Node
-- Download the code from repository (https://github.com/Alexoid1/My-Code-Notes)
+- TypeScript
+- Download the code from repository (https://github.com/Alexoid1/Automated-Job-Search)
 
 
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps:
 
-- Go to https://github.com/Alexoid1/My-Code-Notes and clone the repo using: <br>
-`https://github.com/Alexoid1/My-Code-Notes.git` in your terminal.
-- Cd ./My-Code-Notes
-- Run `npm i` in your terminal.
-- Run `npm run make` in your terminal.
-- Cd /out/make/squirrel.['system']
-- Run  Setup.exe
+- Go to https://github.com/Alexoid1/Automated-Job-Search and clone the repo using: <br>
+`https://github.com/Alexoid1/Automated-Job-Search.git` in your terminal.
+- Cd ./Automated-Job-Search
+- Create `.env` file
 
-## Article
-
-- Article -: [Build a quick and easy desktop app with Electron](https://alex-zam.medium.com/build-your-desktop-app-quick-and-easy-with-electron-123ae7190559)
 
 
 ## Author
