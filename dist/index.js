@@ -26,7 +26,7 @@ const gotToAndDo = async (url, search, rizeTop, searchLocation) => {
 };
 const url = "https://www.linkedin.com/login/";
 const url2 = "https://www.linkedin.com/jobs/";
-const searchJob = 'React';
+const searchJob = 'react';
 const searchLocation = 'Remote';
 const rizeTop = true;
 (async () => {
