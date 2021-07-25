@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //import nextJobCard  from './nextJobCard';
 const emailChose_1 = require("./emailChose");
 const resumeChoose_1 = require("./resumeChoose");
+const questionPage_1 = require("./questionPage");
 const jobSearch = async (page, job, location) => {
     try {
         await page.waitForSelector('.jobs-search-box__text-input.jobs-search-box__keyboard-text-input');
@@ -34,13 +35,11 @@ const jobSearch = async (page, job, location) => {
         try {
             resumeChoose_1.default(page);
             await page.click('[data-control-name="continue_unify"]');
-            await page.waitForSelector('[type="text"]');
-            const questions = await page.$$('[type="text"]');
-            for (let i = 0; i < questions.length; i++) {
-                await questions[i].click();
-                await page.keyboard.press('Backspace');
-                await questions[i].type('1');
-            }
+            questionPage_1.default(page);
+            //await page.waitForSelector('[aria-label="Review your application"]');
+            //await page.click('[aria-label="Review your application"]');
+            //await page.waitForSelector('[aria-label="Submit application"]');
+            //await page.click('[aria-label="Submit application"]');
         }
         catch (error) {
             //await page.click('[aria-label="Dismiss"]');

@@ -1,6 +1,7 @@
 //import nextJobCard  from './nextJobCard';
-import emailChose from './emailChose'
-import resumeChoose from './resumeChoose'
+import emailChose from './emailChose';
+import resumeChoose from './resumeChoose';
+import questionPage from './questionPage';
 
 
 const jobSearch = async (page: any,job:string, location:string) => {
@@ -37,16 +38,11 @@ const jobSearch = async (page: any,job:string, location:string) => {
       try{
         resumeChoose(page)
         await page.click('[data-control-name="continue_unify"]');
-        await page.waitForSelector('[type="text"]');
-        const questions=await page.$$('[type="text"]')
-        for(let i=0;i<questions.length;i++){
-          
-            await questions[i].click()
-            await page.keyboard.press('Backspace')
-            await questions[i].type('1')
-         
-        }
-        
+        questionPage(page);
+        //await page.waitForSelector('[aria-label="Review your application"]');
+        //await page.click('[aria-label="Review your application"]');
+        //await page.waitForSelector('[aria-label="Submit application"]');
+        //await page.click('[aria-label="Submit application"]');
       }catch(error){
         //await page.click('[aria-label="Dismiss"]');
         //await page.click('[data-control-name="discard_application_confirm_btn"]')
