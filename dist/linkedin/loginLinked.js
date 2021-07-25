@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 require('dotenv').config({ path: '.env' });
 const jobSearch_1 = require("./jobSearch");
+const loginAngel_1 = require("../angelList/loginAngel");
 const login = async (page, email = "hello", password = "world") => {
     try {
         await page.goto(url);
@@ -12,10 +13,11 @@ const login = async (page, email = "hello", password = "world") => {
         await page.waitForSelector('.btn__primary--large.from__button--floating');
         await page.click('.btn__primary--large.from__button--floating');
         await page.goto(url2);
+        await page.waitForSelector('.jobs-search-box__text-input.jobs-search-box__keyboard-text-input');
         await jobSearch_1.default(page, searchJob, searchLocation);
     }
-    catch (error) {
-        console.log(error);
+    catch {
+        loginAngel_1.default(page, email);
     }
 };
 const searchJob = 'react';

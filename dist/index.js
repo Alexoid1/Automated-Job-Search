@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require('dotenv').config({ path: '.env' });
 const startCloseBrowser_1 = require("./startCloseBrowser");
 const loginLinked_1 = require("./linkedin/loginLinked");
+//import loginAngel from './angelList/loginAngel';
 const applyToJobs_1 = require("./applyToJobs");
 const rizeTop_1 = require("./rizeTop");
 const gotToAndDo = async (rizeTop) => {
@@ -12,6 +13,7 @@ const gotToAndDo = async (rizeTop) => {
     let { page } = await startCloseBrowser_1.startBrowser();
     page.setViewport({ width: 1000, height: 700 });
     await loginLinked_1.default(page, email, password);
+    //await loginAngel(page, email);
     if (rizeTop) {
         await rizeTop_1.default(page);
     }
