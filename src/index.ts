@@ -10,7 +10,7 @@ const gotToAndDo = async (url: string,search:string,rizeTop:boolean,searchLocati
   const email = process.env.EMAIL;
   const password = process.env.PASSWORD;
   let { page } = await startBrowser();
-  page.setViewport({ width: 1000, height: 800 });
+  page.setViewport({ width: 1000, height: 700 });
   await page.goto(url);
   await login(page, email, password);
   await page.goto(url2);

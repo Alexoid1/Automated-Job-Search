@@ -1,5 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+//import nextJobCard  from './nextJobCard';
+const emailChose_1 = require("./emailChose");
+const resumeChoose_1 = require("./resumeChoose");
 const jobSearch = async (page, job, location) => {
     try {
         await page.waitForSelector('.jobs-search-box__text-input.jobs-search-box__keyboard-text-input');
@@ -16,28 +19,34 @@ const jobSearch = async (page, job, location) => {
             await page.waitForSelector('[data-control-name="shareProfileThenExternalApplyControl"]');
             await page.click('[data-control-name="shareProfileThenExternalApplyControl"]');
         }
-        await page.waitForSelector('.fb-dropdown__select');
-        await page.click('.fb-dropdown__select');
-        await page.keyboard.press("ArrowDown");
-        await page.keyboard.press("Enter");
+        //finally{
+        //const jobCards=await page.$$('.jobs-search-results.display-flex.flex-column button')
+        //console.log(jobCards)
+        //nextJobCard(jobCards, 1);
+        //}
         try {
-            await page.waitForSelector('[aria-label="Continue to next step"]');
-            await page.click('[aria-label="Continue to next step"]');
-            await page.click('[data-control-name="continue_unify"]');
+            emailChose_1.default(page);
         }
         catch {
-            await page.click('[aria-label="Dismiss"]');
-            await page.click('[data-control-name="discard_application_confirm_btn"]');
+            resumeChoose_1.default(page);
         }
-        const jobs = await page.evaluate(() => {
-            const elements = document.querySelectorAll('[itemtype="http://schema.org/ItemList"] li div a');
-            const arr = [];
-            for (let elem of elements) {
-                arr.push(elem.textContent);
+        emailChose_1.default(page);
+        try {
+            resumeChoose_1.default(page);
+            await page.click('[data-control-name="continue_unify"]');
+            await page.waitForSelector('[type="text"]');
+            const questions = await page.$$('[type="text"]');
+            for (let i = 0; i < questions.length; i++) {
+                await questions[i].click();
+                await page.keyboard.press('Backspace');
+                await questions[i].type('1');
             }
-            return arr;
-        });
-        console.log(jobs);
+        }
+        catch (error) {
+            //await page.click('[aria-label="Dismiss"]');
+            //await page.click('[data-control-name="discard_application_confirm_btn"]')
+            console.log(error);
+        }
     }
     catch (error) {
         console.log(error);

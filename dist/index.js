@@ -11,7 +11,7 @@ const gotToAndDo = async (url, search, rizeTop, searchLocation) => {
     const email = process.env.EMAIL;
     const password = process.env.PASSWORD;
     let { page } = await startCloseBrowser_1.startBrowser();
-    page.setViewport({ width: 1000, height: 800 });
+    page.setViewport({ width: 1000, height: 700 });
     await page.goto(url);
     await login_1.default(page, email, password);
     await page.goto(url2);
