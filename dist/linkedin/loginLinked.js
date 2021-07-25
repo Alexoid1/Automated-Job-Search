@@ -17,7 +17,7 @@ const login = async (page, email = "hello", password = "world") => {
         await jobSearch_1.default(page, searchJob, searchLocation);
     }
     catch {
-        loginAngel_1.default(page, email);
+        loginAngel_1.default(page);
     }
 };
 const searchJob = 'react';

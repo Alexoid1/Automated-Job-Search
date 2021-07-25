@@ -16,7 +16,7 @@ const login = async (page: any, email = "hello", password = "world") => {
     await jobSearch(page, searchJob, searchLocation);
   } catch {
     
-    loginAngel(page,email)
+    loginAngel(page)
 
   }
 

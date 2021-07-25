@@ -1,18 +1,18 @@
 /* eslint @typescript-eslint/no-var-requires: "off" */
 require('dotenv').config({path: '.env'})
 import { startBrowser } from './startCloseBrowser';
-import loginLinked from './linkedin/loginLinked';
-//import loginAngel from './angelList/loginAngel';
+//import loginLinked from './linkedin/loginLinked';
+import loginAngel from './angelList/loginAngel';
 import applyToJobs from "./applyToJobs";
 import risetoTop from './rizeTop';
 
 const gotToAndDo = async (rizeTop:boolean) => {
-  const email = process.env.EMAIL;
-  const password = process.env.PASSWORD;
+  //const email = process.env.EMAIL;
+  //const password = process.env.PASSWORD;
   let { page } = await startBrowser();
   page.setViewport({ width: 1000, height: 700 }); 
-  await loginLinked(page, email, password);
-  //await loginAngel(page, email);
+  //await loginLinked(page, email, password);
+  await loginAngel(page);
   if(rizeTop){ 
   await risetoTop(page);
   }
