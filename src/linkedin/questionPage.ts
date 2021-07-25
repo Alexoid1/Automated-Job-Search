@@ -9,8 +9,17 @@ const questionPage= async (page:any) => {
             await questions[i].type('1');
             
         }
-        
-        
+        const form = await page.evaluate(()=>{
+            if(document.querySelector('[data-control-name="continue_unify"]')){
+                return true
+            }else{
+                return false
+            };
+        })
+        if (form){
+            await page.click('[aria-label="Dismiss"]')
+        }
+       
     }catch (error){
         console.log(error)
     }

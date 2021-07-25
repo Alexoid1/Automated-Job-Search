@@ -1,37 +1,31 @@
 /* eslint @typescript-eslint/no-var-requires: "off" */
 require('dotenv').config({path: '.env'})
 import { startBrowser } from './startCloseBrowser';
-import login from './login';
-import jobSearch from "./jobSearch";
+import loginLinked from './linkedin/loginLinked';
 import applyToJobs from "./applyToJobs";
 import risetoTop from './rizeTop';
 
-const gotToAndDo = async (url: string,search:string,rizeTop:boolean,searchLocation:string) => {
+const gotToAndDo = async (rizeTop:boolean) => {
   const email = process.env.EMAIL;
   const password = process.env.PASSWORD;
   let { page } = await startBrowser();
-  page.setViewport({ width: 1000, height: 700 });
-  await page.goto(url);
-  await login(page, email, password);
-  await page.goto(url2);
-  await jobSearch(page, search, searchLocation);
-  
+  page.setViewport({ width: 1000, height: 700 }); 
+  await loginLinked(page, email, password);
   if(rizeTop){ 
   await risetoTop(page);
   }
-  await page.goto(url + search);
+  //await page.goto(url + search);
   await page.setViewport({ width: 500, height: 1000 });
   await page.addStyleTag({ content: "* {scroll-behavior: auto !important;}" });
   await applyToJobs(page)
 
 }
 
-const url:string = "https://www.linkedin.com/login/";
-const url2:string ="https://www.linkedin.com/jobs/";
-const searchJob = 'react';
-const searchLocation = 'Remote';
+
+
+
 const rizeTop =true;
 
 (async () => {
-  await gotToAndDo(url,searchJob,rizeTop, searchLocation);
+  await gotToAndDo(rizeTop);
 })();
