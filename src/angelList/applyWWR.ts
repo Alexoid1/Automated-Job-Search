@@ -1,7 +1,9 @@
-const applyWWR = async (fe:any,page:any) => {
+const applyWWR = async (page:any) => {
     try{
-        await fe.click()
-        await page.waitForSelector("article ul .feature");
+        await page.click()
+        const heading1 = await page.waitForSelector('a[target="_blank"]');
+        await page.click('a[target="_blank"]')
+        console.log(heading1)
         
     }catch (error){
         console.log(error)
