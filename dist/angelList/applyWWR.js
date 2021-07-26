@@ -1,11 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const applyWWR = async (page) => {
+const applyWWR = async (url, page) => {
     try {
-        await page.click();
-        const heading1 = await page.waitForSelector('a[target="_blank"]');
-        await page.click('a[target="_blank"]');
-        console.log(heading1);
+        await page.goto(url);
+        const formnumber = await page.evaluate(() => {
+            const forms = Array.from(document.querySelectorAll('form'));
+            return forms.length;
+        });
+        console.log(formnumber);
     }
     catch (error) {
         console.log(error);

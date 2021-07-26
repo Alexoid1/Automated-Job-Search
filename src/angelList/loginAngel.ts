@@ -1,4 +1,4 @@
-//import applyWWR from './applyWWR';
+import applyWWR from './applyWWR';
 
 
 
@@ -24,10 +24,11 @@ const loginAngel = async (page:any) => {
           await page.waitForSelector('.company-card a[target="_blank"]');
           const getwebSite=await page.evaluate(()=>{
             const jobWebsite=Array.from(document.querySelectorAll('.company-card a'));
-                const jobLink=jobWebsite[2].toString()
+                const jobLink=jobWebsite[3].toString()
                 return jobLink
           })
           console.log(getwebSite)
+          await applyWWR(getwebSite,page)
           
 
 

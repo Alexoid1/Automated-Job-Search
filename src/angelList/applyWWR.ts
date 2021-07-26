@@ -1,9 +1,11 @@
-const applyWWR = async (page:any) => {
+const applyWWR = async (url:string, page:any) => {
     try{
-        await page.click()
-        const heading1 = await page.waitForSelector('a[target="_blank"]');
-        await page.click('a[target="_blank"]')
-        console.log(heading1)
+        await page.goto(url);
+        const formnumber=await page.evaluate(()=>{
+            const forms=Array.from(document.querySelectorAll('form'));
+            return forms.length
+        })
+        console.log(formnumber);
         
     }catch (error){
         console.log(error)

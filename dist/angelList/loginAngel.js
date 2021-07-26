@@ -1,6 +1,6 @@
 "use strict";
-//import applyWWR from './applyWWR';
 Object.defineProperty(exports, "__esModule", { value: true });
+const applyWWR_1 = require("./applyWWR");
 const loginAngel = async (page) => {
     try {
         await page.goto(urll);
@@ -22,10 +22,11 @@ const loginAngel = async (page) => {
             await page.waitForSelector('.company-card a[target="_blank"]');
             const getwebSite = await page.evaluate(() => {
                 const jobWebsite = Array.from(document.querySelectorAll('.company-card a'));
-                const jobLink = jobWebsite[2].toString();
+                const jobLink = jobWebsite[3].toString();
                 return jobLink;
             });
             console.log(getwebSite);
+            await applyWWR_1.default(getwebSite, page);
         }
     }
     catch (error) {
