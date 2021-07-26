@@ -9,7 +9,7 @@ const loginAngel = async (page:any) => {
       const ar=await page.evaluate(()=>{
           const elements=document.querySelectorAll('article ul .feature a');
           const arr=[]
-          let regx:any=/remote-jobs/
+          const regx : RegExp=/remote-jobs/
           for(let element of elements){
               
               const wor:string=element.toString()
