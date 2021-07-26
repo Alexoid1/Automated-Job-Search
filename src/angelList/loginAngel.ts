@@ -11,27 +11,32 @@ const loginAngel = async (page:any) => {
           const arr=[]
           const regx : RegExp=/remote-jobs/
           for(let element of elements){
-              
               const wor:string=element.toString()
               if(regx.test(wor)){
                 arr.push(wor)
               }
-              
           }
           return arr
 
       });
-      console.log(ar)
-      
-    
+      for(let j=0; j<ar.length;j++){
+          await page.goto(ar[j]);
+          await page.waitForSelector('.company-card a[target="_blank"]');
+          const getwebSite=await page.evaluate(()=>{
+            const jobWebsite=Array.from(document.querySelectorAll('.company-card a'));
+                const jobLink=jobWebsite[2].toString()
+                return jobLink
+          })
+          console.log(getwebSite)
+          
+
+
+      }
     } catch (error) {
       console.log(error);
   
     }
-  
-  
 }
 
 const urll:string = "https://weworkremotely.com/";
-
 export default loginAngel;

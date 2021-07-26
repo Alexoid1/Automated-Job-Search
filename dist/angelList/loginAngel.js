@@ -8,7 +8,7 @@ const loginAngel = async (page) => {
         const ar = await page.evaluate(() => {
             const elements = document.querySelectorAll('article ul .feature a');
             const arr = [];
-            let regx = /remote-jobs/;
+            const regx = /remote-jobs/;
             for (let element of elements) {
                 const wor = element.toString();
                 if (regx.test(wor)) {
@@ -17,7 +17,16 @@ const loginAngel = async (page) => {
             }
             return arr;
         });
-        console.log(ar);
+        for (let j = 0; j < ar.length; j++) {
+            await page.goto(ar[j]);
+            await page.waitForSelector('.company-card a[target="_blank"]');
+            const getwebSite = await page.evaluate(() => {
+                const jobWebsite = Array.from(document.querySelectorAll('.company-card a'));
+                const jobLink = jobWebsite[2].toString();
+                return jobLink;
+            });
+            console.log(getwebSite);
+        }
     }
     catch (error) {
         console.log(error);
