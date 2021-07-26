@@ -1,6 +1,7 @@
 const applyWWR = async (url:string, page:any) => {
     try{
         await page.goto(url);
+        await page.waitForSelector("form");
         const formnumber=await page.evaluate(()=>{
             const forms=Array.from(document.querySelectorAll('form'));
             return forms.length
@@ -8,7 +9,7 @@ const applyWWR = async (url:string, page:any) => {
         console.log(formnumber);
         
     }catch (error){
-        console.log(error)
+        console.log(error);
     }
     
 }
